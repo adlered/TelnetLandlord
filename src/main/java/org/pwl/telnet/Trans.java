@@ -1,5 +1,7 @@
 package org.pwl.telnet;
 
+import org.pwl.landlord.Logger;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -10,8 +12,8 @@ public class Trans {
             BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(socket.getOutputStream());
             bufferedOutputStream.write(text.getBytes(encode));
             bufferedOutputStream.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logger.log(Thread.currentThread().getName() + " Socket closed.");
         }
     }
 
@@ -22,9 +24,9 @@ public class Trans {
             bufferedOutputStream.flush();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream(), encode));
             return bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Logger.log(Thread.currentThread().getName() + " Socket closed.");
         }
-        return null;
+        return "";
     }
 }
