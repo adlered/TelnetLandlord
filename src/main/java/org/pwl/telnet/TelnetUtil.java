@@ -14,7 +14,7 @@ public class TelnetUtil implements Runnable {
         RunningConfig runningConfig = new RunningConfig();
         Trans.send(socket, runningConfig.encode, "Welcome to Telnet Landlord! What is your system?\r\n");
         Trans.send(socket, runningConfig.encode, "1: Windows (GB2312)\r\n");
-        Trans.send(socket, runningConfig.encode, "2: Linux/macOS (UTF-8, Default)\r\n");
+        Trans.send(socket, runningConfig.encode, "2: Linux/macOS (UTF-8)\r\n");
         String quote = Trans.input(socket, runningConfig.encode);
         if (quote.length() > 1) {
             runningConfig.encode = "UTF-8";
